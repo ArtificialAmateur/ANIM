@@ -1,5 +1,5 @@
 /*
- * Jackal Network Monitoring Toolkit
+ * Automatic Network Intrusion Monitor 
  * @ArtificialAmateur && @alefir
  */
 
@@ -8,11 +8,11 @@
 #include <iostream>
 
 class Anet{
+
 public:
 	//
-private:
-int launcher(){
-	const char *jackal = 
+static int launcher(){
+	const char* jackal =
 "    ___   ________   ________   ___  __     ________   ___          \n"
 "   |\\  \\ |\\   __  \\ |\\   ____\\ |\\  \\|\\  \\  |\\   __  \\ |\\  \\         \n"
 "   \\ \\  \\\\ \\  \\|\\  \\\\ \\  \\___| \\ \\  \\/  /|_\\ \\  \\|\\  \\\\ \\  \\        \n"
@@ -42,11 +42,12 @@ int launcher(){
 "                              X. 9  `   '  P )X\n"
 "                              `b  `       '  d'\n"
 "                               `             '";
-	std::cout<<jackal;
-	return 0;
-}
-static void main(){
-	Anet::launcher();
+std::cout<<jackal;
+return 0;
 }
 };
 
+int main(){
+	Anet::launcher();
+	return 0;
+}
