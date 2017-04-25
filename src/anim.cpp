@@ -59,7 +59,7 @@ static int help() {
 					"\t-m, --module [MODULE] \tRuns the module of name or number specified\n"
 					"\t-l, --list\t\tList installed modules\n"
 					"\t-v, --version\t\tDisplay currently installed version\n"
-					"\t-h, --help\t\tDisplay this help text";
+					"\t-h, --help\t\tDisplay this help text\n";
 	cout << help;
 	return 0;
 }
@@ -98,33 +98,28 @@ int main(int argc, char* argv[]) {
 		return 1;
 	}
 	// C++ Doesn't allow strings in switches. I'm sorry.
-	if ( argv[1] == "-m" || argv[1] == "--module") {
-		if (argc < 3) {
-			cout << "Usage: anim -m [MODULE]";
-			return 1;
-		} else {
-			//run_module(argv[2]);
-			cout << "Pretend a module is being run";
+	for ( int i = 1; i < argc; i++ ){
+		string optchar = argv[i];
+		if ( optchar == "-v" ) {
+			cout << version << endl;
+			return 0;
 		}
-		return 1;
-	}
-	if ( argv[1] == "-l" || argv[1] == "--list") {
-		list_modules();
-		return 0;
-	}
-	if ( argv[1] == "-v" || argv[1] == "--version") {
-		cout << version;
-		return 0;
-	}
-	if ( argv[1] == "-h" || argv[1] == "--help") {
-		help();
-		return 0;
-	}
-	else {
-		//help();
-		cout << argv[1];
-		cout << "buffer";
-		return 1;
+		else if ( optchar == "-h" ) {
+			help();
+			return 0;
+		}
+		else if ( optchar == "-l" ) {
+			list_modules();
+			return 0;
+		}
+		else if ( optchar == "-m" ) {
+			cout << "Pretend it's running a module" << endl;
+			return 0;
+		}
+		else {
+			help();
+			return 1;
+		}
 	}
 	return 2;
 }
