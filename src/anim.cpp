@@ -81,13 +81,15 @@ int getdir (string dir, vector<string> &files)
 }
 
 static int list_modules() {
-	string dir = string(".");
+	string dir = string("./modules/");
     vector<string> files = vector<string>();
 
     getdir(dir,files);
 
     for (unsigned int i = 0;i < files.size();i++) {
-        cout << files[i] << endl;
+        if ( files[i] != "." && files[i] != ".." ) {
+			cout << files[i] << endl;
+		}
     }
     return 0;
 }
