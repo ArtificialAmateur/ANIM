@@ -100,19 +100,19 @@ int main(int argc, char* argv[]) {
 	// C++ Doesn't allow strings in switches. I'm sorry.
 	for ( int i = 1; i < argc; i++ ){
 		string optchar = argv[i];
-		if ( optchar == "-v" ) {
+		if ( optchar == "-v" || optchar == "--version" ) {
 			cout << version << endl;
 			return 0;
 		}
-		else if ( optchar == "-h" ) {
+		else if ( optchar == "-h" || optchar == "--help" ) {
 			help();
 			return 0;
 		}
-		else if ( optchar == "-l" ) {
+		else if ( optchar == "-l" || optchar == "--list" ) {
 			list_modules();
 			return 0;
 		}
-		else if ( optchar == "-m" ) {
+		else if ( optchar == "-m" || optchar == "--module" ) {
 			cout << "Pretend it's running a module" << endl;
 			return 0;
 		}
