@@ -1,7 +1,7 @@
 //============================================================================
 // Name        : anim.cpp
 // Author      : @ArtificialAmateur @alefir
-// Version     : Alpha
+// Version     : 0.0.1a
 // Copyright   : dont steal our things
 // Description : Automatic Network Intrusion Monitor
 //============================================================================
@@ -12,11 +12,12 @@
 #include <dirent.h>
 #include <errno.h>
 #include <string>
+#include <unistd.h>
 
 using namespace std;
 
-const char* version = "Anim v0.0.1";
-static int launcher() {
+const char* version = "Anim v0.0.1a";
+int launcher() {
 	const char* jackal =
 			"    ___   ________   ________   ___  __     ________   ___          \n"
 					"   |\\  \\ |\\   __  \\ |\\   ____\\ |\\  \\|\\  \\  |\\   __  \\ |\\  \\         \n"
@@ -51,7 +52,7 @@ static int launcher() {
 	return 0;
 }
 
-static int help() {
+int help() {
 	const char* help =
 			"Usage: anim [OPTION]\n"
 					"Automatic Network Intrusion Monitor\n"
@@ -80,7 +81,7 @@ int getdir (string dir, vector<string> &files)
     return 0;
 }
 
-static int list_modules() {
+int list_modules() {
 	string dir = string("./modules/");
     vector<string> files = vector<string>();
 
@@ -94,10 +95,18 @@ static int list_modules() {
     return 0;
 }
 
+int run_module(string module) {
+	cout << "Run module " << module << endl;
+	string modpath = "./modules/" + module;
+	cout << "path: " << modpath << endl;
+	execlp( modpath.c_str() , "r" );
+	return 0;
+}
+
 int main(int argc, char* argv[]) {
 	if (argc < 2) {
 		help();
-		return 1;
+		return 4;
 	}
 	// C++ Doesn't allow strings in switches. I'm sorry.
 	for ( int i = 1; i < argc; i++ ){
@@ -115,10 +124,15 @@ int main(int argc, char* argv[]) {
 			return 0;
 		}
 		else if ( optchar == "-m" || optchar == "--module" ) {
-			cout << "Pretend it's running a module" << endl;
-			return 0;
-		}
-		else {
+			if ( argc == 3 ) {
+				run_module( string(argv[2]) );
+				return 0;
+			} else {
+				help();
+				return 3;
+			}
+
+		} else {
 			help();
 			return 1;
 		}
