@@ -96,9 +96,8 @@ int list_modules() {
 }
 
 int run_module(string module) {
-	cout << "Run module " << module << endl;
 	string modpath = "./modules/" + module;
-	cout << "path: " << modpath << endl;
+	launcher();
 	execlp( modpath.c_str() , "r" );
 	return 0;
 }
