@@ -47,9 +47,10 @@ char run_command(char* command) {
 }
 
 int main(int argc, char* argv[]) {
-	char output[] = run_command("uname -a");
+	char output[20] = { run_command("uname -a") };
 	std::string uname = output;
 	std::cout << uname << std::endl;
+	std::cout << output << std::endl;
 	std::string kernel = split(uname, " ")[2];
 	std::cout << kernel << std::endl;
 	return 0;
